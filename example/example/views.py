@@ -15,7 +15,5 @@ class ExampleUpload(tableimport.UploadView):
         return Example.objects.create(user=self.user, **row)
 
     def after_import(self, upload):
-        try:
-            Example.objects.first().update(name='first')
-        except:
-            pass
+        Example.objects.update(name='name')
+
