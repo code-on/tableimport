@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="25px" viewBox="0 0 26 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Check</title>
+    <desc>Created with Sketch.</desc>
+    <defs/>
+    <g id="Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Notification" transform="translate(-62.000000, -38.000000)" stroke="#71C021" stroke-width="1.6">
+            <g id="Group" transform="translate(43.500000, 25.509995)">
+                <g id="Check" transform="translate(20.000000, 13.800000)">
+                    <path d="M22.0952381,10.3249524 L22.0952381,11.352381 C22.0924406,16.2450244 18.8718676,20.5530734 14.1800084,21.9403096 C9.48814914,23.3275459 4.44268239,21.4635067 1.77972181,17.3590447 C-0.883238777,13.2545827 -0.529331812,7.88744877 2.64952197,4.16819399 C5.82837575,0.448939201 11.0749206,-0.736448257 15.544,1.25485714" id="Shape"/>
+                    <polyline id="Shape" points="23.2 1.40952381 11.047619 13.5619048 7.73333333 10.247619"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

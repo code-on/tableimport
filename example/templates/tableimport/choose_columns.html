@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="data">
+        <style>
+            .upload-block {
+                display: flex;
+                width: 100%;
+            }
+
+            .column-block {
+                width: 11%;
+                padding: 10px;
+                margin: 30px 0.2%;
+                margin-left: 4px;
+                border: 1px solid #ddd;
+                font-size: 14px;
+            }
+
+            .column-block td {
+                border-bottom: solid 1px #ddd;
+                padding: 4px;
+            }
+
+            .column-block table {
+                width: 100%;
+            }
+
+            .send {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 1% 0 1%;
+
+            }
+
+            table td strong {
+                font-weight: bold;
+                color: gray;
+            }
+
+            ​
+            .btn-success {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 14px;
+            }
+
+            #upload-gif {
+                display: none;
+            }
+        </style>
+        <form>
+            {% csrf_token %}
+            <div class="upload-block">
+                {% csrf_token %}
+                {% for index,column in columns.items %}
+                    {% if forloop.counter0|divisibleby:8 %}
+                        </div>
+                        <div class="upload-block">
+                    {% endif %}
+                    <div class="column-block">
+                        <label for="include_column">Include column</label>
+                        <input type="checkbox" name="include_column" id="{{ index }}"
+                               onchange="include(this.id)">
+                        <select value="name of the column" col_id="{{ index }}" class="form-group column" disabled>
+                            <option value="-----">Select</option>
+                            {% for choise in field_choices %}
+                                <option value="{{ choise }}"> {{ choise }}</option>
+                            {% endfor %}
+                        </select>
+                        <hr>
+
+                        <table>
+                            <tbody>
+                            {% for cell in column %}
+                                <tr>
+                                    <td>{{ cell|truncatechars:20|default:'&nbsp' }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endfor %}
+                </div>
+        </form>
+        <div class="send">
+
+            <label for="skip_first">Skip first row</label>
+            <input type="checkbox" name="skip_first" id="skip_first">
+            <button class="btn btn-success btn-block" id="upload-btn" onclick="add_columns()">Send chosen
+            </button>
+            <img id="upload-gif" src="{% static 'images/icons/upload.gif' %}" height="30px">
+        </div>
+    </div>
+{% endblock content %}
+
+
+{% block extra_js %}
+    <script>
+        function include(input_id) {
+            check_box = $('#' + input_id);
+            input = $('[col_id=' + input_id + ' ]');
+            if (check_box.prop('checked')) {
+                input.prop('disabled', false);
+            }
+            else {
+                input.prop('disabled', true)
+            }
+        }
+    </script>
+    <script>
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+    </script>
+    <script>
+
+        function add_columns() {
+            cols = $('.column').not(':disabled');
+            var csrftoken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
+            indexes = [];
+            field_choices = [];
+            skip_first = $('#skip_first').prop('checked');
+            for (i = 0; i < cols.length; i++) {
+                col = $(cols[i]);
+                field_choice = col.prop('value');
+                if (!field_choice.includes('---')) {
+                    field_choices.push(col.prop('value'));
+                    indexes.push(col.attr('col_id'))
+                }
+            }
+            if (indexes.length) {
+                $('#upload-btn').attr('disabled', true);
+                $('#upload-gif').show();
+                $.ajax({
+                    type: "POST",
+                    data: {'col_indexes': indexes, 'field_choices': field_choices, 'skip_first': skip_first},
+                    url: window.location.href,
+                    error: function (error) {
+                        $('#upload-btn').attr('disabled', false);
+                        $('#upload-gif').hide();
+                        if (error.status === 500) {
+                            alert("Internal server error")
+                        }
+                        else {
+                            alert("Errors occured: " + error.responseText   );
+                        }
+
+                    },
+                    success: function (data) {
+                        $('#upload-btn').attr('disabled', false);
+                        $('#upload-gif').hide();
+                        $('.data').html(data)
+                    }
+                });
+
+            }
+            else {
+                alert('Choose fields')
+            }
+
+
+        }
+
+    </script>
+{% endblock %}
