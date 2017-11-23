@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    {% block styles %}
+        <style>
+            {#choose_column.html #}
+            .upload-block {
+                display: flex;
+                width: 100%;
+            }
+
+            .column-block {
+                width: 11%;
+                padding: 10px;
+                margin: 30px 0.2%;
+                margin-left: 4px;
+                border: 1px solid #ddd;
+                font-size: 14px;
+            }
+
+            .column-block td {
+                border-bottom: solid 1px #ddd;
+                padding: 4px;
+            }
+
+            .column-block table {
+                width: 100%;
+            }
+
+            .send {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 1% 0 1%;
+
+            }
+
+            table td strong {
+                font-weight: bold;
+                color: gray;
+            }
+
+            ​
+            .btn-success {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 14px;
+            }
+
+            #upload-gif {
+                display: none;
+            }
+
+            {#created_objects#}
+            .errorlist li {
+                list-style: decimal;
+                margin-left: 10px;
+            }
+
+            .errorlist li ul li {
+                list-style: none;
+                border: solid 1px #C62A21;
+                border-radius: 2px;
+                background-color: #F5BDBC;
+                margin-left: 20px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .created {
+                width: 100%;
+            }
+
+            .errors {
+                width: 100%;
+            }
+
+            .errors h2 {
+                background-color: #F5BDBC;
+                border: solid 1px #C62A21;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                margin-top: 10px;
+                margin-bottom: 5px;
+                font-size: 20px;
+            }
+
+            table {
+                font-family: arial, sans-serif;
+                font-size: 13px;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                text-align: left;
+                padding: 8px;
+            }
+
+            .error_cell {
+                color: #C62A21;
+                background-color: #F5BDBC;
+            }
+
+            thead {
+                background-color: #EBEEF0;
+            }
+
+            tr:nth-child(even) {
+                background-color: #F9FAFA;
+                border: solid 1px #EBEEF0;
+            }
+
+            #success_alert {
+                display: flex;
+                justify-content: center;
+                margin: 5px;
+            }
+
+            #success_alert div {
+                display: flex;
+                align-items: center;
+                border: 1px solid #EBEEF0;
+                border-radius: 2px;
+                background-color: #F9FAFA;
+                padding: 10px;
+            }
+
+            #success_alert span {
+                font-size: 20px;
+                margin-left: 15px;
+            }
+        </style>
+    {% endblock %}
+</head>
+<body>
+
+{% block content %}
+
+{% endblock %}
+
+<script src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+{% block extra_js %}
+
+{% endblock %}
+
+
+</body>
+</html>

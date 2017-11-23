@@ -122,8 +122,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    rel('static'),
-)
-
 MEDIA_ROOT = rel('..', 'files', 'media')

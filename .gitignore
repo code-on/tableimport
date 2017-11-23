@@ -1,1 +1,37 @@
-# Created by .ignore support plugin (hsz.mobi)
+
+### Python template
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+*.egg-info/
+.installed.cfg
+*.egg
+
+
+# Django stuff:
+*.log
+.static_storage/
+.media/
+local_settings.py
+
+# pyenv
+.python-version
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+files/
+*/db.sqlite3
+# IntelliJ project files
+.idea
+*.iml
+out
+gen

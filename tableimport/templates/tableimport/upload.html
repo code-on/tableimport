@@ -1,19 +1,19 @@
-{% extends 'base.html' %}
+{% extends 'tableimport/base.html' %}
 
 {% block content %}
 
     <div class="upload-form">
-    <h2>Upload your list with companies</h2>
+        <h2>Upload your list with companies</h2>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
 
-          <input type="file" id="file" name="file"><br><br>
+            <input type="file" id="file" name="file"><br><br>
             <button>upload</button>
         </form>
         <div class="uploaded">
             <p>{% if uploads.count > 0 %} You have already uploaded {{ uploads.count }} files {% endif %} </p>
             {% for upload in uploads %}
-                <p><a href="{{ upload.id }}">{{ upload.file_name}} </a></p>
+                <p><a href="{{ upload.id }}">{{ upload.file_name }} </a></p>
             {% endfor %}
         </div>
     </div>
