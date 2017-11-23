@@ -50,4 +50,4 @@ They require jquery. You may want them or create your own.
     indexes, field_choices, and skip_first (that means whether you skip the first row or not)
 
     created_objects. It recieves all fields of your form in 'fields',
-    success - list of model objects, and errors = list of dicts of errors per object
+        success - list of model objects, and errors = list of dicts of errors per object
