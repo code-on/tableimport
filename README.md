@@ -53,10 +53,9 @@ class ExampleUpload(tableimport.UploadView):
 
 6) There are 3 templates that are used in uploading: choose_columns.html, created_object.html and upload.html.
 They require jquery. You may want them or create your own.
-   ``` upload.html should implement form of uploading excel file ```
+6.1)'upload.html' should implement form of uploading excel file
 
-    choose_columns.html. It recieves 'columns' that is dict of column index and it's values of first twenty row and 'field_choices', that contains fields of your model. When fields are chosen, send it via post and include the following params:
-    indexes e.g [1,2,5,10], corresponding field_choices e.g ['name', 'surname','email','phone'], and skip_first e.g True (that means whether you skip the first row or not)
+6.2)choose_columns.html. It recieves 'columns' that is a dict of columns index and their data(of first twenty row) and 'field_choices', that contains fields of your model. When fields are chosen, send it via post and include the following params:
+indexes e.g [1,2,5,10], corresponding field_choices e.g ['name', 'surname','email','phone'], and skip_first e.g True (that means whether you skip the first row or not)
 
-    created_objects. It recieves all fields of your form in 'fields',
-        success - list of model objects, and errors = list of dicts of errors per object
+6.3)'created_objects.html'. It recieves all fields of your form in 'fields', 'success' - list of model objects, and 'errors' - list of dicts of errors per object
