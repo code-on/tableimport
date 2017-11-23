@@ -49,15 +49,14 @@ class ExampleUpload(tableimport.UploadView):
         Example.objects.update(name='name')
 ```
 5) include your view to urls, it has to be able to take param.
-    url(r'^upload-excel/(.*?)$', ExampleUpload.as_view(), name='upload-excel'),
+    ```url(r'^upload-excel/(.*?)$', ExampleUpload.as_view(), name='upload-excel')```
 
 6) There are 3 templates that are used in uploading: choose_columns.html, created_object.html and upload.html.
 They require jquery. You may want them or create your own.
-    upload.html should implement form of uploading excel file
+   ``` upload.html should implement form of uploading excel file ```
 
-    choose_columns.html. It recieves 'columns' that is dict of column index and it's values of first twenty row and             'field_choices'
-    that contains fields of your model. when fields are chosen, send it via post and include the following params:
-    indexes, field_choices, and skip_first (that means whether you skip the first row or not)
+    choose_columns.html. It recieves 'columns' that is dict of column index and it's values of first twenty row and 'field_choices', that contains fields of your model. When fields are chosen, send it via post and include the following params:
+    indexes e.g [1,2,5,10], corresponding field_choices e.g ['name', 'surname','email','phone'], and skip_first e.g True (that means whether you skip the first row or not)
 
     created_objects. It recieves all fields of your form in 'fields',
         success - list of model objects, and errors = list of dicts of errors per object
